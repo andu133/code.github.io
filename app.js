@@ -1,20 +1,42 @@
 let tg = window.Telegram.WebApp;
-document.addEventListener('DOMContentLoaded', function() {
-  const btnAccept = document.getElementById('btnAccept');
-  const btnCancel = document.getElementById('btnCancel');
-  const codeInput = document.getElementById('codeInput');
+let acceptBtn = document.getElementById('btnAccept');
+let closeBtn = document.getElementById('btnCancel');
+let codeInput = document.getElementById('codeInput');
 
-  btnAccept.addEventListener('click', function() {
-      const code = codeInput.value;
-      if (code) {
+// Временный вывод в консоль для проверки срабатывания события при клике на кнопку
+console.log('JavaScript код загружен');
+
+acceptBtn.addEventListener('click', () => {
+    console.log('Клик на кнопку "Принять"');
+    const code = codeInput.value;
+    const regex = /^\d{5}$/
+    if (regex.test(code)) {
         tg.sendData(code); // отправляем данные в бота
-        tg.close()
-      } else {
-          alert("Пожалуйста, введите код.");
-      }
-  });
+        tg.close();
+    } else {
+        alert("Пожалуйста, введите код.");
+    }
+});
 
-  btnCancel.addEventListener('click', function() {
-    tg.close(); // закрываем мини-приложение
-  });
+
+codeInput.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
+  console.log('Клик на кнопку "Принять"');
+  const code = codeInput.value;
+  const regex = /^\d{5}$/
+  if (regex.test(code)) {
+      tg.sendData(code); // отправляем данные в бота
+      tg.close();
+  } else {
+      alert("Пожалуйста, введите код.");
+  }
+}
+});
+
+
+
+
+closeBtn.addEventListener('click', () => {
+    console.log('Клик на кнопку "Отмена"');
+    tg.close();
 });
