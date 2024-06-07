@@ -1,5 +1,4 @@
 let tg = window.Telegram.WebApp;
-tg.expand();
 document.addEventListener('DOMContentLoaded', function() {
   const btnAccept = document.getElementById('btnAccept');
   const btnCancel = document.getElementById('btnCancel');
